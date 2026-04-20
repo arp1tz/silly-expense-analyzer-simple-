@@ -1,4 +1,12 @@
+amount = 90
+category = "Petrol"
+
+print(f"Amount: {amount}")
+print(f"Category: {category}")
+
+
 expenses = []
+
 amount = 100
 category = "food"
 expenses.append({"amount": amount, "category": category})
@@ -11,4 +19,7 @@ total = 0
 for expense in expenses:
     total += expense["amount"]
 
+
+percent = (amount / total) * 100
 print("Total expense:", total)
+print(f"Percentage of {category} expense: {percent:.2f}%")

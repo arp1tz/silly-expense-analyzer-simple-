@@ -1,8 +1,3 @@
-#amount = 90
-#category = "Petrol"
-
-#print(f"Amount: {amount}")
-# print(f"Category: {category}")
 
 expenses = []
 
@@ -39,3 +34,6 @@ if total > 1000:
     print("⚠️ You are spending too much!")
 else:
     print("✅ Spending is under control")
+
+percent = (amount / total) * 100
+print(f"\nPercentage of total expenses: {percent:.2f}%")
