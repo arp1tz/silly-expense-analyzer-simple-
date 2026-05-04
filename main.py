@@ -1,6 +1,28 @@
 
 expenses = []
 
+def add_expenses(expenses):
+   amount = int(input("Enter the amount spent: "))
+   category = input("Enter the category of the expense: ")
+   expenses.append({'amount': amount, 'category': category})
+
+def show_total(expenses):
+   total = sum(exp['amount'] for exp in expenses)
+   print("Total expenses: ", total)
+
+def category_summary(expenses):
+    category_totals = {}
+
+    for exp in expenses:
+        cat = exp['category']
+        category_totals[cat] = category_totals.get(cat, 0) + exp['amount']
+
+    total = sum(category_totals.values())
+
+    print("\nCategory-wise expenses:")
+    for cat, amt in category_totals.items():
+    
+
 while True:
     amount = int(input("Enter the amount spent: "))
     category = input("Enter the category of the expense: ")
