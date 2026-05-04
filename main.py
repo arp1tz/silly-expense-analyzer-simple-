@@ -1,14 +1,17 @@
-
 expenses = []
 
-def add_expenses(expenses):
-   amount = int(input("Enter the amount spent: "))
-   category = input("Enter the category of the expense: ")
-   expenses.append({'amount': amount, 'category': category})
+# -------- FUNCTIONS --------
+
+def add_expense(expenses):
+    amount = int(input("Enter the amount spent: "))
+    category = input("Enter the category: ").lower()
+    expenses.append({'amount': amount, 'category': category})
+
 
 def show_total(expenses):
-   total = sum(exp['amount'] for exp in expenses)
-   print("Total expenses: ", total)
+    total = sum(exp['amount'] for exp in expenses)
+    print("Total expenses:", total)
+
 
 def category_summary(expenses):
     category_totals = {}
@@ -21,41 +24,35 @@ def category_summary(expenses):
 
     print("\nCategory-wise expenses:")
     for cat, amt in category_totals.items():
-    
+        percent = (amt / total) * 100
+        print(f"{cat}: {amt} ({percent:.2f}%)")
+
+
+# -------- MAIN MENU --------
 
 while True:
-    amount = int(input("Enter the amount spent: "))
-    category = input("Enter the category of the expense: ")
+    print("\n1. Add Expense")
+    print("2. View Total")
+    print("3. Category Summary")
+    print("4. Exit")
 
-    expenses.append({'amount': amount, 'category': category})
+    choice = input("Enter your choice: ")
 
-    choice = input("Do you want to add another expense? (yes/no): ")
-    if choice == "no":
-       break
-    
+    if choice == "1":
+        add_expense(expenses)
 
-total = 0
-for expense in expenses:
-  total += expense["amount"]
-print("Total expenses: ", total)
+    elif choice == "2":
+        show_total(expenses)
 
-category_totals = {}
+    elif choice == "3":
+        if expenses:
+            category_summary(expenses)
+        else:
+            print("No expenses added yet")
 
-for expense in expenses:
-   cat = expense["category"]
+    elif choice == "4":
+        print("Exiting...")
+        break
 
-   if cat in category_totals:
-      category_totals[cat] += expense ["amount"]
-   else:      category_totals[cat] = expense["amount"]
-print("\nCategory-wise expenses:")
-
-for cat, amount in category_totals.items():
-    print(cat, ":", amount)
-
-if total > 1000:
-    print("⚠️ You are spending too much!")
-else:
-    print("✅ Spending is under control")
-
-percent = (amount / total) * 100
-print(f"\nPercentage of total expenses: {percent:.2f}%")
+    else:
+        print("Invalid choice")
