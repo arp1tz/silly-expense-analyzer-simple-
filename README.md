@@ -41,6 +41,11 @@ It then calculates:
 ```bash
 python main.py
 ```
+## 🔄 Version 3 Updates
+- Added JSON-based data storage  
+- Expenses now persist after closing the app  
+- Implemented file handling using Python JSON module
+
 
 
 #Remark
