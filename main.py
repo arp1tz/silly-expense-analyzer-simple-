@@ -40,6 +40,15 @@ def category_summary(expenses):
         percent = (amt / total) * 100
         print(f"{cat}: {amt} ({percent:.2f}%)")
 
+def view_expenses(expenses):
+    if not expenses:
+        print("No expenses found.")
+        return
+    print("\nAll Expenses:")
+
+    for i, exp in enumerate(expenses, start=1):
+        print(f"{i}. {exp['category']} - ₹{exp['amount']}")
+
 
 # -------- MAIN MENU --------
 
@@ -47,8 +56,8 @@ while True:
     print("\n1. Add Expense")
     print("2. View Total")
     print("3. Category Summary")
-    print("4. Exit")
-
+    print("4. View All Expenses")
+    print("5. Exit")
     choice = input("Enter your choice: ")
 
     if choice == "1":
@@ -64,8 +73,10 @@ while True:
             print("No expenses added yet")
 
     elif choice == "4":
+        view_expenses(expenses)
+
+    elif choice == "5":
         print("Exiting...")
         break
-
     else:
         print("Invalid choice")
