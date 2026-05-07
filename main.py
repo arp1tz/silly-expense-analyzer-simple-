@@ -1,4 +1,6 @@
+from datetime import date, datetime
 import json
+from unicodedata import category
 
 def load_data():
     try:
@@ -17,7 +19,11 @@ expenses = load_data()
 def add_expense(expenses):
     amount = int(input("Enter the amount spent: "))
     category = input("Enter the category: ").lower()
-    expenses.append({'amount': amount, 'category': category})
+    expenses.append({
+    'amount': amount,
+    'category': category,
+    'date': str(date.today())
+})
     save_data(expenses)
 
 
@@ -47,8 +53,7 @@ def view_expenses(expenses):
     print("\nAll Expenses:")
 
     for i, exp in enumerate(expenses, start=1):
-        print(f"{i}. {exp['category']} - ₹{exp['amount']}")
-
+           print(f"{i}. {exp['category']} - ₹{exp['amount']} on {exp.get('date', 'No Date')}")
 
 # -------- MAIN MENU --------
 
