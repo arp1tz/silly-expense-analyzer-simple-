@@ -54,7 +54,7 @@ def view_expenses(expenses):
 
     for i, exp in enumerate(expenses, start=1):
            print(f"{i}. {exp['category']} - ₹{exp['amount']} on {exp.get('date', 'No Date')}")
-
+4
 # -------- MAIN MENU --------
 
 while True:
