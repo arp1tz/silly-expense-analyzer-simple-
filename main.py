@@ -54,7 +54,30 @@ def view_expenses(expenses):
 
     for i, exp in enumerate(expenses, start=1):
            print(f"{i}. {exp['category']} - ₹{exp['amount']} on {exp.get('date', 'No Date')}")
-4
+
+
+def delete_expense(expenses):
+    if not expenses:
+        print("No expenses to delete")
+        return
+
+    view_expenses(expenses)
+
+    try:
+        delete_index = int(input("\nEnter expense number to delete: "))
+
+        if 1 <= delete_index <= len(expenses):
+            removed = expenses.pop(delete_index - 1)
+
+            save_data(expenses)
+
+            print(f"Deleted: {removed['category']} - ₹{removed['amount']}")
+
+        else:
+            print("Invalid expense number")
+
+    except ValueError:
+        print("Please enter a valid number")
 # -------- MAIN MENU --------
 
 while True:
@@ -62,7 +85,8 @@ while True:
     print("2. View Total")
     print("3. Category Summary")
     print("4. View All Expenses")
-    print("5. Exit")
+    print("5. Delete Expense")
+    print("6. Exit")
     choice = input("Enter your choice: ")
 
     if choice == "1":
@@ -81,6 +105,8 @@ while True:
         view_expenses(expenses)
 
     elif choice == "5":
+        delete_expense(expenses)
+    elif choice == "6":
         print("Exiting...")
         break
     else:
