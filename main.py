@@ -78,6 +78,34 @@ def delete_expense(expenses):
 
     except ValueError:
         print("Please enter a valid number")
+
+def edit_expense(expenses):
+    if not expenses:
+        print("No expenses to edit")
+        return
+
+    view_expenses(expenses)
+
+    try:
+        edit_index = int(input("\nEnter expense number to edit: "))
+
+        if 1 <= edit_index <= len(expenses):
+
+            new_amount = int(input("Enter new amount: "))
+            new_category = input("Enter new category: ").lower()
+
+            expenses[edit_index - 1]['amount'] = new_amount
+            expenses[edit_index - 1]['category'] = new_category
+
+            save_data(expenses)
+
+            print("Expense updated successfully")
+
+        else:
+            print("Invalid expense number")
+
+    except ValueError:
+        print("Please enter valid input")
 # -------- MAIN MENU --------
 
 while True:
@@ -85,8 +113,9 @@ while True:
     print("2. View Total")
     print("3. Category Summary")
     print("4. View All Expenses")
-    print("5. Delete Expense")
-    print("6. Exit")
+    print("5. Edit Expense")
+    print("6. Delete Expense")
+    print("7. Exit")
     choice = input("Enter your choice: ")
 
     if choice == "1":
@@ -105,8 +134,10 @@ while True:
         view_expenses(expenses)
 
     elif choice == "5":
-        delete_expense(expenses)
+        edit_expense(expenses)
     elif choice == "6":
+        delete_expense(expenses)
+    elif choice == "7":
         print("Exiting...")
         break
     else:
