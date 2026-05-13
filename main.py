@@ -1,6 +1,8 @@
 from datetime import date, datetime
 import json
 from unicodedata import category
+expenses = load_data()
+BUDGET = 5000
 
 def load_data():
     try:
@@ -29,8 +31,13 @@ def add_expense(expenses):
 
 def show_total(expenses):
     total = sum(exp['amount'] for exp in expenses)
+
     print("Total expenses:", total)
 
+    if total > BUDGET:
+        print("⚠️ Budget exceeded!")
+    else:
+        print("✅ You are within your budget")
 
 def category_summary(expenses):
     category_totals = {}
