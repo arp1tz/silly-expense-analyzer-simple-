@@ -113,6 +113,20 @@ def edit_expense(expenses):
 
     except ValueError:
         print("Please enter valid input")
+
+def search_expenses(expenses):
+    search_category = input("Enter category to search: ").lower()
+
+    found = False
+
+    for exp in expenses:
+        if exp['category'] == search_category:
+            print(f"{exp['category']} - ₹{exp['amount']} on {exp.get('date', 'No Date')}")
+            found = True
+
+    if not found:
+        print("No matching expenses found")
+        
 # -------- MAIN MENU --------
 
 while True:
@@ -122,7 +136,8 @@ while True:
     print("4. View All Expenses")
     print("5. Edit Expense")
     print("6. Delete Expense")
-    print("7. Exit")
+    print("7. Search Expenses")
+    print("8. Exit")
     choice = input("Enter your choice: ")
 
     if choice == "1":
@@ -145,6 +160,8 @@ while True:
     elif choice == "6":
         delete_expense(expenses)
     elif choice == "7":
+        search_expenses(expenses)
+    elif choice == "8":
         print("Exiting...")
         break
     else:
