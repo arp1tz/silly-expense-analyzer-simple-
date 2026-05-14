@@ -126,6 +126,16 @@ def search_expenses(expenses):
 
     if not found:
         print("No matching expenses found")
+
+def highest_expense(expenses):
+    if not expenses:
+        print("No expenses found")
+        return
+
+    highest = max(expenses, key=lambda exp: exp['amount'])
+
+    print("\nHighest Expense:")
+    print(f"{highest['category']} - ₹{highest['amount']} on {highest.get('date', 'No Date')}")
         
 # -------- MAIN MENU --------
 
@@ -138,6 +148,7 @@ while True:
     print("6. Delete Expense")
     print("7. Search Expenses")
     print("8. Exit")
+    print("9. Show Highest Expense")
     choice = input("Enter your choice: ")
 
     if choice == "1":
@@ -163,6 +174,9 @@ while True:
         search_expenses(expenses)
     elif choice == "8":
         print("Exiting...")
+        
         break
+    elif choice == "9":
+        highest_expense(expenses)
     else:
         print("Invalid choice")
